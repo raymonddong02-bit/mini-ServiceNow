@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini ServiceNow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP: Action buttons -->
+  <header class="top-bar">
+    <button id="btn-service-a" class="btn btn-a">Fire Service A Event</button>
+    <button id="btn-service-b" class="btn btn-b">Fire Service B Event</button>
+  </header>
+
+  <!-- MIDDLE: Three-panel log area -->
+  <section class="middle-panels">
+    <div class="panel" id="panel-events">
+      <h3>Event Log</h3>
+      <ul id="event-list"></ul>
+    </div>
+
+    <div class="panel" id="panel-incidents">
+      <h3>Incident List</h3>
+      <ul id="incident-list"></ul>
+    </div>
+
+    <div class="panel" id="panel-notifications">
+      <h3>Notification Log</h3>
+      <ul id="notification-list"></ul>
+    </div>
+  </section>
+
+  <!-- BOTTOM: Team queues -->
+  <section class="bottom-panels">
+    <div class="panel" id="panel-team-a">
+      <h3>Team A</h3>
+      <ul id="team-a-list"></ul>
+    </div>
+
+    <div class="panel" id="panel-team-b">
+      <h3>Team B</h3>
+      <ul id="team-b-list"></ul>
+    </div>
+  </section>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

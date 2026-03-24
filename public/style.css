@@ -1,0 +1,174 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0f1117;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Top bar ──────────────────────────────────────────────────────────────── */
+.top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background: #1a1d27;
+  border-bottom: 1px solid #2d3148;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: .6rem 1.6rem;
+  border: none;
+  border-radius: 6px;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s;
+}
+.btn:hover { filter: brightness(1.15); }
+.btn-a { background: #3b82f6; color: #fff; }
+.btn-b { background: #8b5cf6; color: #fff; }
+
+/* ─── Middle panels ────────────────────────────────────────────────────────── */
+.middle-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: #2d3148;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Bottom panels ────────────────────────────────────────────────────────── */
+.bottom-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #2d3148;
+  flex: 1;
+  min-height: 0;
+  border-top: 2px solid #2d3148;
+}
+
+/* ─── Panel ────────────────────────────────────────────────────────────────── */
+.panel {
+  background: #1a1d27;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel h3 {
+  padding: .55rem 1rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #94a3b8;
+  border-bottom: 1px solid #2d3148;
+  flex-shrink: 0;
+}
+
+.panel ul {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: .4rem 0;
+}
+
+.panel li {
+  padding: .35rem 1rem;
+  font-size: .85rem;
+  border-bottom: 1px solid #1e2235;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Dot indicators ───────────────────────────────────────────────────────── */
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-a { background: #3b82f6; }
+.dot-b { background: #8b5cf6; }
+.dot-info { background: #6b7280; }
+
+/* ─── State badges ─────────────────────────────────────────────────────────── */
+.badge {
+  font-size: .7rem;
+  padding: .15rem .45rem;
+  border-radius: 4px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.badge-new          { background: #1e3a5f; color: #60a5fa; }
+.badge-investigating { background: #3b2d0a; color: #fbbf24; }
+.badge-resolved     { background: #0d3320; color: #34d399; }
+
+/* ─── Incident action buttons ──────────────────────────────────────────────── */
+.action-btn {
+  font-size: .7rem;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  transition: background .15s;
+  flex-shrink: 0;
+}
+.action-btn.investigate { color: #fbbf24; }
+.action-btn.investigate:hover { background: rgba(251,191,36,.15); }
+.action-btn.resolve     { color: #34d399; }
+.action-btn.resolve:hover { background: rgba(52,211,153,.15); }
+.action-btn:disabled { opacity: .35; cursor: default; }
+
+/* ─── Notification log ─────────────────────────────────────────────────────── */
+#notification-list li { font-size: .8rem; color: #94a3b8; }
+
+/* ─── Toast ────────────────────────────────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  z-index: 9999;
+}
+
+.toast {
+  background: #1e2235;
+  border: 1px solid #3b82f6;
+  color: #e2e8f0;
+  padding: .7rem 1.2rem;
+  border-radius: 8px;
+  font-size: .88rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  animation: slideIn .3s ease;
+  max-width: 320px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.toast.fade-out {
+  animation: fadeOut .4s ease forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(30px); }
+}
