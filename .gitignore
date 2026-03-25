@@ -22,3 +22,5 @@ Thumbs.db
 # Build output
 dist/
 build/
+
+settings.local.json
