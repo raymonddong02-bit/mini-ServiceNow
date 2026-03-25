@@ -33,6 +33,7 @@ body {
 .btn:hover { filter: brightness(1.15); }
 .btn-a { background: #3b82f6; color: #fff; }
 .btn-b { background: #8b5cf6; color: #fff; }
+.btn-clear { background: #dc2626; color: #fff; margin-left: auto; }
 
 /* ─── Middle panels ────────────────────────────────────────────────────────── */
 .middle-panels {

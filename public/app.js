@@ -27,7 +27,6 @@ function incidentLi(inc) {
     <span class="dot dot-${inc.assigned_team === 'Team A' ? 'a' : 'b'}"></span>
     <span style="flex:1;font-weight:600">${inc.number || inc.sys_id.slice(0,8)}</span>
     ${stateBadge(inc.state)}
-    ${actionButtons(inc)}
   `;
   return li;
 }
@@ -39,6 +38,7 @@ function teamLi(inc) {
     <span style="flex:1;font-weight:600">${inc.number || inc.sys_id.slice(0,8)}</span>
     <span style="flex:2;font-size:.8rem;color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${inc.short_description || ''}</span>
     ${stateBadge(inc.state)}
+    ${actionButtons(inc)}
   `;
   return li;
 }
@@ -171,9 +171,9 @@ document.getElementById('btn-service-b').addEventListener('click', () => {
   });
 });
 
-// ─── Incident action buttons (delegated) ──────────────────────────────────────
+// ─── Incident action buttons in team panels (delegated) ───────────────────────
 
-document.getElementById('incident-list').addEventListener('click', async (e) => {
+async function handleIncidentAction(e) {
   const btn = e.target.closest('[data-action][data-sys-id]');
   if (!btn || btn.disabled) return;
 
@@ -185,6 +185,23 @@ document.getElementById('incident-list').addEventListener('click', async (e) => 
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify({ state: action }),
   });
+}
+
+document.getElementById('team-a-list').addEventListener('click', handleIncidentAction);
+document.getElementById('team-b-list').addEventListener('click', handleIncidentAction);
+
+// ─── Clear all data ────────────────────────────────────────────────────────────
+
+document.getElementById('btn-clear').addEventListener('click', async () => {
+  if (!confirm('Clear all incidents, events, and notifications?')) return;
+
+  await fetch('/api/admin/clear', { method: 'DELETE' });
+
+  document.getElementById('incident-list').innerHTML    = '';
+  document.getElementById('team-a-list').innerHTML      = '';
+  document.getElementById('team-b-list').innerHTML      = '';
+  document.getElementById('event-list').innerHTML       = '';
+  document.getElementById('notification-list').innerHTML = '';
 });
 
 // ─── Boot ─────────────────────────────────────────────────────────────────────

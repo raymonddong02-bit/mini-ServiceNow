@@ -110,4 +110,15 @@ export class TableService {
     if (!doc) throw Object.assign(new Error('Record not found'), { status: 404 });
     return { deleted: true, sys_id: sysId };
   }
+
+  // ─── Clear all ────────────────────────────────────────────────────────────
+
+  static async clearAll() {
+    const tables = ['incident', 'sysevent', 'sys_notification'];
+    for (const tableName of tables) {
+      const model = getModel(tableName);
+      await model.deleteMany({});
+    }
+    return { cleared: tables };
+  }
 }

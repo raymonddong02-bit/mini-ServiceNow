@@ -4,7 +4,7 @@ import path from 'path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RUNNER_PATH = path.join(__dirname, 'sandbox-runner.js');
-const DEFAULT_TIMEOUT_MS = 5000;
+const DEFAULT_TIMEOUT_MS = parseInt(process.env.SCRIPT_TIMEOUT_MS, 10) || 30000;
 
 /**
  * Runs a business rule script in an isolated worker thread.
